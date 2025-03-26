@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-neutral-900 transition-colors duration-200;
+  }
+
+  .dark body {
+    @apply bg-neutral-900 text-neutral-50;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200
+           flex items-center justify-center gap-2
+           hover:translate-y-[-2px] active:translate-y-0
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 text-white
+           hover:bg-primary-600
+           dark:bg-accent-500 dark:hover:bg-accent-600;
+  }
+
+  .btn-secondary {
+    @apply btn bg-neutral-200 text-neutral-800
+           hover:bg-neutral-300
+           dark:bg-neutral-700 dark:text-neutral-100 dark:hover:bg-neutral-600;
+  }
+
+  .theme-toggle {
+    @apply p-2 rounded-full transition-colors duration-200
+           hover:bg-neutral-100 dark:hover:bg-neutral-800
+           text-neutral-500 dark:text-neutral-400;
+  }
+}
