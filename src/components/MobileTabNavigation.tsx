@@ -10,12 +10,12 @@ export const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({
   onTabChange,
 }) => {
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 p-2 flex justify-center space-x-4 z-50 shadow-md">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 mobile-nav p-2 flex justify-center space-x-4 z-50">
       <button
-        className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 min-w-[100px] justify-center ${
+        className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 min-w-[100px] justify-center hover-float ${
           activeTab === 'image'
-            ? 'bg-primary-500 dark:bg-accent-500 text-white'
-            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600'
+            ? 'from-primary-500 to-accent-500 bg-gradient-primary text-white dark:from-accent-500 dark:to-primary-500'
+            : 'from-neutral-100 to-neutral-200 bg-gradient-secondary text-neutral-600 dark:from-neutral-700 dark:to-neutral-800 dark:text-neutral-400 hover:from-neutral-200 hover:to-neutral-300 dark:hover:from-neutral-600 dark:hover:to-neutral-700'
         }`}
         onClick={() => onTabChange('image')}
       >
@@ -25,10 +25,10 @@ export const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({
         画像
       </button>
       <button
-        className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 min-w-[100px] justify-center ${
+        className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 min-w-[100px] justify-center hover-float ${
           activeTab === 'chat'
-            ? 'bg-primary-500 dark:bg-accent-500 text-white'
-            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600'
+            ? 'from-primary-500 to-accent-500 bg-gradient-primary text-white dark:from-accent-500 dark:to-primary-500'
+            : 'from-neutral-100 to-neutral-200 bg-gradient-secondary text-neutral-600 dark:from-neutral-700 dark:to-neutral-800 dark:text-neutral-400 hover:from-neutral-200 hover:to-neutral-300 dark:hover:from-neutral-600 dark:hover:to-neutral-700'
         }`}
         onClick={() => onTabChange('chat')}
       >

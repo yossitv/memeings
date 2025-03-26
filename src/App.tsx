@@ -140,23 +140,23 @@ function App() {
   };
 
   return (
-      <div className="flex flex-col h-screen bg-neutral-50 dark:bg-neutral-900 overflow-hidden">
+      <div className="flex flex-col h-screen bg-gradient-secondary from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950 overflow-hidden">
         {/* テーマ切り替えボタン */}
         <div className="absolute top-4 right-4 z-50">
           <button
             onClick={toggleTheme}
-            className="theme-toggle"
+            className="theme-toggle hover-float"
             aria-label="テーマ切り替え"
           >
             {theme === 'dark' ? '🌙' : '☀️'}
           </button>
         </div>
         {/* モード選択ボタン */}
-        <div className="flex flex-col items-center mb-4 pt-4 px-4">
-          <div className="flex flex-wrap justify-center gap-2 mb-2 bg-white dark:bg-neutral-800 p-2 rounded-lg shadow-md w-full max-w-4xl">
+        <div className="flex flex-col items-center mb-4 pt-4 px-4 animate-fade-in">
+          <div className="flex flex-wrap justify-center gap-2 mb-2 mode-selector p-4 rounded-lg w-full max-w-4xl">
             {/* 管理ボタン */}
             <button
-              className="btn-secondary"
+              className="btn-secondary hover-float"
               onClick={() => setShowAdmin(true)}
             >
               ⚙️ 管理
@@ -168,7 +168,7 @@ function App() {
               .map(([modeId, modePreset]) => (
                 <button
                   key={modeId}
-                  className={mode === modeId ? 'btn-primary' : 'btn-secondary'}
+                  className={`${mode === modeId ? 'btn-primary' : 'btn-secondary'} hover-float`}
                   onClick={() => setMode(modeId)}
                 >
                   {modePreset.icon} {modeId}
@@ -177,7 +177,7 @@ function App() {
           </div>
 
           {/* 現在のモードの説明 */}
-          <div className="text-sm text-neutral-600 dark:text-neutral-400 bg-white dark:bg-neutral-800 px-4 py-2 rounded-lg shadow-sm">
+          <div className="text-sm text-neutral-600 dark:text-neutral-400 mode-description px-6 py-3 rounded-lg slide-in">
             {modes[mode]?.description || '説明が見つかりません'}
           </div>
         </div>

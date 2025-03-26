@@ -133,8 +133,8 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
 
   return (
     <div
-      className={`flex items-center justify-center h-full bg-primary-50 dark:bg-neutral-900 p-2 lg:p-6 image-panel ${
-        isDragging ? 'border border-dashed border-primary-400 dark:border-accent-400 bg-primary-100 dark:bg-neutral-800' : ''
+      className={`flex items-center justify-center h-full bg-gradient-secondary from-primary-50/50 to-white dark:from-neutral-900 dark:to-neutral-950 p-2 lg:p-6 image-panel ${
+        isDragging ? 'border-2 border-dashed border-primary-400 dark:border-accent-400 bg-primary-100/50 dark:bg-neutral-800/50 animate-pulse-soft' : ''
       }`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
@@ -148,11 +148,11 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
                 <img
                   src={img}
                   alt={`現在の画像 ${index + 1}`}
-                  className="max-w-full max-h-[55vh] lg:max-h-[70vh] object-contain rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                  className="max-w-full max-h-[55vh] lg:max-h-[70vh] object-contain rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] image-card"
                 />
                 <button
                   onClick={() => handleDownload(img, index)}
-                  className="absolute top-4 right-4 bg-gray-800/50 hover:bg-gray-800/80 text-white p-2 rounded-full shadow-sm hover:shadow-md transition-all duration-300 z-10"
+                  className="absolute top-4 right-4 from-primary-500/50 to-accent-500/50 bg-gradient-primary hover:from-primary-600/50 hover:to-accent-600/50 text-white p-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 z-10 hover:scale-110"
                   title="画像をダウンロード"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +164,7 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
           </div>
         </div>
       ) : (
-        <div className="text-center text-neutral-600 dark:text-neutral-400 bg-white dark:bg-neutral-800 p-3 rounded-lg shadow-sm w-full max-w-lg mx-auto">
+        <div className="text-center text-neutral-600 dark:text-neutral-400 mode-selector p-6 rounded-lg w-full max-w-lg mx-auto animate-fade-in">
           <input
             type="file"
             ref={fileInputRef}
@@ -175,7 +175,7 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
           />
           <button
             onClick={() => handleButtonClick(false)}
-            className="btn-primary mb-3 w-full min-h-[48px] text-base rounded-lg shadow-sm hover:shadow transition-all duration-300"
+            className="btn-primary mb-3 w-full min-h-[48px] text-base rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 hover-float"
             disabled={selectedImages.length >= maxImages}
           >
             画像を選択 {mode !== 'freestyle' && `(残り${getRemainingImagesCount()}枚)`}
@@ -188,8 +188,8 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
             <p className="text-neutral-500 dark:text-neutral-400">
               クリップボードから貼り付けも可能です
             </p>
-            <div className="lg:hidden bg-neutral-100 dark:bg-neutral-700 p-2 rounded-lg text-neutral-500 dark:text-neutral-400">
-              <p className="font-medium mb-1">📱 画像の追加方法</p>
+            <div className="lg:hidden mode-description p-4 rounded-lg text-neutral-500 dark:text-neutral-400 slide-in">
+              <p className="font-medium mb-2 text-primary-600 dark:text-accent-400">📱 画像の追加方法</p>
               <ul className="space-y-0.5 list-disc list-inside">
                 <li>カメラで撮影</li>
                 <li>ギャラリーから選択</li>
