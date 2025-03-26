@@ -30,7 +30,7 @@ export const ChatMessage: React.FC<ChatMessageProps> = ({ message, onImageClick 
                 key={index}
                 src={image}
                 alt={`生成された画像 ${index + 1}`}
-                className="max-w-[48%] h-auto rounded-md cursor-pointer hover:opacity-90 transition-all duration-300 hover:shadow-md"
+                className="w-24 h-24 object-cover rounded-md cursor-pointer hover:opacity-90 transition-all duration-300 hover:shadow-md"
                 onClick={() => handleImageClick(image)}
               />
             ))}

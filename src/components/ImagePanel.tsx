@@ -141,18 +141,18 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
       onDragLeave={handleDragLeave}
     >
       {currentImage.length > 0 ? (
-        <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-          <div className="flex flex-col gap-4 w-full">
+        <div className="relative w-full h-full flex items-center justify-center">
+          <div className="flex flex-col gap-4 w-full max-h-full overflow-y-auto py-2">
             {currentImage.map((img, index) => (
-              <div key={index} className="relative">
+              <div key={index} className="relative min-h-[200px] flex items-center justify-center">
                 <img
                   src={img}
                   alt={`現在の画像 ${index + 1}`}
-                  className="w-full h-auto object-contain rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                 />
                 <button
                   onClick={() => handleDownload(img, index)}
-                  className="absolute top-2 right-2 bg-gray-800/50 hover:bg-gray-800/80 text-white p-2 rounded-full shadow-sm hover:shadow-md transition-all duration-300"
+                  className="absolute top-4 right-4 bg-gray-800/50 hover:bg-gray-800/80 text-white p-2 rounded-full shadow-sm hover:shadow-md transition-all duration-300 z-10"
                   title="画像をダウンロード"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
