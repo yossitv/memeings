@@ -9,7 +9,7 @@ import type {
   ModePreset
 } from '../types';
 
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'https://11b9-118-238-237-219.ngrok-free.app';
 
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
