@@ -133,7 +133,7 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
 
   return (
     <div
-      className={`flex items-center justify-center h-full bg-primary-50 dark:bg-neutral-900 p-2 lg:p-6 image-panel ${
+      className={`flex items-center justify-center h-full bg-primary-50 dark:bg-neutral-900 p-3 lg:p-6 image-panel ${
         isDragging ? 'border-2 border-dashed border-primary-400 dark:border-accent-400 bg-primary-100 dark:bg-neutral-800' : ''
       }`}
       onDrop={handleDrop}
@@ -144,15 +144,15 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
         <div className="relative w-full h-full flex items-center justify-center">
           <div className="flex flex-col gap-4 w-full max-h-full overflow-y-auto py-2">
             {currentImage.map((img, index) => (
-              <div key={index} className="relative min-h-[200px] flex items-center justify-center">
+              <div key={index} className="relative min-h-[200px] flex items-center justify-center p-2 lg:p-4">
                 <img
                   src={img}
                   alt={`現在の画像 ${index + 1}`}
-                  className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="max-w-full max-h-[60vh] lg:max-h-[70vh] object-contain rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
                 />
                 <button
                   onClick={() => handleDownload(img, index)}
-                  className="absolute top-4 right-4 bg-gray-800/50 hover:bg-gray-800/80 text-white p-2 rounded-full shadow-sm hover:shadow-md transition-all duration-300 z-10"
+                  className="absolute top-6 right-6 bg-gray-800/50 hover:bg-gray-800/80 text-white p-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 z-10"
                   title="画像をダウンロード"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -175,21 +175,29 @@ export const ImagePanel: React.FC<ImagePanelProps> = ({
           />
           <button
             onClick={() => handleButtonClick(false)}
-            className="btn-primary mb-4 w-full min-h-[56px] text-lg"
+            className="btn-primary mb-4 w-full min-h-[60px] text-lg rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
             disabled={selectedImages.length >= maxImages}
           >
             画像を選択 {mode !== 'freestyle' && `(残り${getRemainingImagesCount()}枚)`}
           </button>
-          <p className="text-sm mt-3 text-neutral-500 dark:text-neutral-400">
-            <span className="hidden lg:inline">または画像をドラッグ＆ドロップ</span>
-            <span className="lg:hidden">または</span>
-          </p>
-          <p className="text-sm mt-1 text-neutral-500 dark:text-neutral-400">
-            クリップボードから貼り付けも可能です
-            <span className="lg:hidden block mt-1">
-              （スマートフォンの場合はカメラやギャラリーから直接選択できます）
-            </span>
-          </p>
+          <div className="text-sm mt-3 space-y-2">
+            <p className="text-neutral-500 dark:text-neutral-400">
+              <span className="hidden lg:inline">または画像をドラッグ＆ドロップ</span>
+              <span className="lg:hidden">または</span>
+            </p>
+            <p className="text-neutral-500 dark:text-neutral-400">
+              クリップボードから貼り付けも可能です
+            </p>
+            <p className="lg:hidden text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-700 p-3 rounded-lg mt-3">
+              📱 スマートフォンの場合：
+              <br />
+              • カメラで直接撮影
+              <br />
+              • ギャラリーから選択
+              <br />
+              • 他のアプリから共有
+            </p>
+          </div>
           {mode !== 'freestyle' && (
             <p className="text-sm mt-3 text-primary-600 dark:text-accent-400 font-medium">
               最大{maxImages}枚の画像を選択できます

@@ -10,12 +10,12 @@ export const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({
   onTabChange,
 }) => {
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 p-2 flex justify-center space-x-4 z-50">
+    <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 p-3 flex justify-center space-x-6 z-50 shadow-lg">
       <button
-        className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 ${
+        className={`px-8 py-4 rounded-xl flex items-center gap-3 transition-all duration-300 min-w-[120px] justify-center ${
           activeTab === 'image'
-            ? 'bg-primary-500 dark:bg-accent-500 text-white'
-            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400'
+            ? 'bg-primary-500 dark:bg-accent-500 text-white shadow-md'
+            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600'
         }`}
         onClick={() => onTabChange('image')}
       >
@@ -25,10 +25,10 @@ export const MobileTabNavigation: React.FC<MobileTabNavigationProps> = ({
         画像
       </button>
       <button
-        className={`px-6 py-3 rounded-lg flex items-center gap-2 transition-all duration-300 ${
+        className={`px-8 py-4 rounded-xl flex items-center gap-3 transition-all duration-300 min-w-[120px] justify-center ${
           activeTab === 'chat'
-            ? 'bg-primary-500 dark:bg-accent-500 text-white'
-            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400'
+            ? 'bg-primary-500 dark:bg-accent-500 text-white shadow-md'
+            : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-600'
         }`}
         onClick={() => onTabChange('chat')}
       >
