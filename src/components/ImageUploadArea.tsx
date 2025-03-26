@@ -136,7 +136,7 @@ export const ImageUploadArea: React.FC<ImageUploadAreaProps> = ({
   };
 
   return (
-    <div className="p-3 lg:p-4 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 mb-[88px] lg:mb-0">
+    <div className="p-2 lg:p-4 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 mb-[72px] lg:mb-0">
       <div
         className={`
           min-h-[100px]
@@ -161,9 +161,9 @@ export const ImageUploadArea: React.FC<ImageUploadAreaProps> = ({
           {selectedImages.map((image, index) => (
             <div
               key={index}
-              className={`relative w-24 h-24 lg:w-20 lg:h-20 rounded-xl overflow-hidden border 
+              className={`relative w-20 h-20 lg:w-16 lg:h-16 rounded-lg overflow-hidden border 
                 ${draggedIndex === index ? 'opacity-50 border-dashed' : 'border-neutral-200 dark:border-neutral-600'} 
-                shadow-md hover:shadow-lg transition-all duration-300 cursor-move`}
+                shadow-sm hover:shadow transition-all duration-300 cursor-move`}
               draggable={true}
               onDragStart={(e) => handleDragStart(index, e)}
               onDragOver={(e) => handleImageDragOver(index, e)}
@@ -180,7 +180,7 @@ export const ImageUploadArea: React.FC<ImageUploadAreaProps> = ({
                   e.stopPropagation();
                   handleRemoveImage(index);
                 }}
-                className="absolute top-2 right-2 bg-white dark:bg-neutral-800 bg-opacity-70 hover:bg-opacity-100 rounded-full w-8 h-8 lg:w-6 lg:h-6 flex items-center justify-center shadow-md hover:shadow-lg transition-all"
+                className="absolute top-1 right-1 bg-white dark:bg-neutral-800 bg-opacity-70 hover:bg-opacity-100 rounded-full w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center shadow-sm hover:shadow transition-all"
                 aria-label="画像を削除"
               >
                 <svg className="w-4 h-4 text-gray-700 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -204,7 +204,7 @@ export const ImageUploadArea: React.FC<ImageUploadAreaProps> = ({
           <button
             onClick={handleButtonClick}
             className={`
-              w-full min-h-[60px] text-lg rounded-xl
+              w-full min-h-[48px] text-base rounded-lg
               ${selectedImages.length >= maxImages
                 ? 'bg-neutral-300 dark:bg-neutral-600 cursor-not-allowed text-neutral-500 dark:text-neutral-400'
                 : 'btn-primary'}
@@ -214,19 +214,19 @@ export const ImageUploadArea: React.FC<ImageUploadAreaProps> = ({
           >
             画像を選択 {mode !== 'freestyle' && `(残り${getRemainingImagesCount()}枚)`}
           </button>
-          <div className="space-y-2 mt-3">
-            <p className="text-sm text-neutral-600 dark:text-neutral-300 font-medium">
+          <div className="space-y-1.5 mt-2">
+            <p className="text-xs text-neutral-600 dark:text-neutral-300 font-medium">
               {mode !== 'freestyle' ? '画像を2枚追加してください' : '画像を追加してください'}
             </p>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-xs text-neutral-500 dark:text-neutral-400">
               <span className="hidden lg:inline">ここに画像をドラッグ＆ドロップすることもできます</span>
             </p>
-            <div className="lg:hidden bg-neutral-100 dark:bg-neutral-700 p-3 rounded-lg text-sm text-neutral-500 dark:text-neutral-400">
-              <p className="font-medium mb-2">📱 画像の追加方法：</p>
-              <ul className="space-y-1 list-disc list-inside">
-                <li>カメラで直接撮影</li>
+            <div className="lg:hidden bg-neutral-100 dark:bg-neutral-700 p-2 rounded-lg text-xs text-neutral-500 dark:text-neutral-400">
+              <p className="font-medium mb-1">📱 画像の追加方法</p>
+              <ul className="space-y-0.5 list-disc list-inside">
+                <li>カメラで撮影</li>
                 <li>ギャラリーから選択</li>
-                <li>他のアプリから共有</li>
+                <li>他アプリから共有</li>
               </ul>
             </div>
           </div>
