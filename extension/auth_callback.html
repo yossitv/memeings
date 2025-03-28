@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Memeings Authentication</title>
+  <script src="firebase-config.js"></script>
+  <script src="firebase-auth.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+    .container {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+    }
+    h1 {
+      color: #333;
+    }
+    .message {
+      margin: 20px 0;
+      font-size: 16px;
+    }
+    .success {
+      color: #4caf50;
+    }
+    .error {
+      color: #f44336;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Memeings Authentication</h1>
+    <div id="message" class="message">Processing authentication...</div>
+  </div>
+
+  <script>
+    // Function to save authentication state directly to storage
+    async function saveAuthStateDirectly(token, userInfo) {
+      return new Promise((resolve, reject) => {
+        try {
+          const data = {};
+          data[window.MemeingsConfig.AUTH_TOKEN_KEY] = token;
+          data[window.MemeingsConfig.USER_INFO_KEY] = userInfo;
+          
+          chrome.storage.local.set(data, () => {
+            if (chrome.runtime.lastError) {
+              reject(chrome.runtime.lastError);
+            } else {
+              console.log('Auth state saved directly');
+              resolve();
+            }
+          });
+        } catch (error) {
+          console.error('Error saving auth state directly:', error);
+          reject(error);
+        }
+      });
+    }
+
+    // Process authentication response
+    document.addEventListener('DOMContentLoaded', async function() {
+      const messageElement = document.getElementById('message');
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const userInfoStr = urlParams.get('user_info');
+      
+      try {
+        if (!token) {
+          throw new Error('No authentication token received');
+        }
+        
+        let userInfo;
+        try {
+          userInfo = userInfoStr ? JSON.parse(decodeURIComponent(userInfoStr)) : {
+            displayName: 'Memeings User',
+            email: 'user@example.com'
+          };
+        } catch (e) {
+          console.error('Error parsing user info:', e);
+          userInfo = {
+            displayName: 'Memeings User',
+            email: 'user@example.com'
+          };
+        }
+        
+        // Save authentication state
+        if (window.MemeingsAuth && window.MemeingsAuth.saveAuthState) {
+          await window.MemeingsAuth.saveAuthState(token, userInfo);
+        } else {
+          await saveAuthStateDirectly(token, userInfo);
+        }
+        
+        messageElement.textContent = 'Authentication successful! You can close this window.';
+        messageElement.classList.add('success');
+        
+        // Close window automatically after a short delay
+        setTimeout(() => {
+          window.close();
+        }, 3000);
+      } catch (error) {
+        console.error('Authentication error:', error);
+        messageElement.textContent = `Authentication failed: ${error.message}`;
+        messageElement.classList.add('error');
+      }
+    });
+  </script>
+</body>
+</html>

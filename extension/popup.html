@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Memeings Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+  <!-- Load scripts in correct order -->
+  <script src="firebase-config.js"></script>
+  <script src="api.js"></script>
+  <script src="firebase-auth.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Memeings Assistant</h1>
+      <div id="auth-container">
+        <button id="loginButton" class="auth-button">Login</button>
+        <div id="userInfo" class="user-info" style="display: none;">
+          <img id="userAvatar" class="user-avatar" src="" alt="User Avatar">
+          <span id="userName"></span>
+          <button id="logoutButton" class="auth-button small">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <div id="not-logged-in" style="display: none;">
+        <p>Please login to use Memeings Assistant</p>
+      </div>
+      
+      <div id="logged-in-content">
+        <div class="input-section">
+          <p>Selected text:</p>
+          <div id="selectedText" class="selected-text-container">Please select text on any webpage</div>
+          <button id="generateButton" class="action-button" disabled>Generate Image</button>
+        </div>
+        
+        <div id="loading" class="loading" style="display: none;">
+          <div class="spinner"></div>
+          <p>Generating image...</p>
+        </div>
+        
+        <div id="result-section" class="result-section" style="display: none;">
+          <div class="image-container">
+            <img id="resultImage" class="result-image" src="" alt="Generated Image">
+          </div>
+          <div class="action-buttons">
+            <button id="copyButton" class="action-button">Copy</button>
+            <button id="downloadButton" class="action-button">Download</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="error-container" class="error-container" style="display: none;">
+      <p id="errorMessage"></p>
+    </div>
+  </div>
+  
+  <script src="popup.js"></script>
+</body>
+</html>
