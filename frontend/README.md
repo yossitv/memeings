@@ -10,6 +10,7 @@
 - Tailwind CSS 3.4.1
 - axios 1.6.7
 - uuid 9.0.0
+- Firebase Authentication 10.8.1
 
 ## インストール手順
 
@@ -17,6 +18,30 @@
 # 依存関係のインストール
 npm install
 ```
+
+## Firebase設定
+
+このアプリケーションはFirebase Authenticationを使用してユーザー認証を行います。独自のFirebaseプロジェクトを作成し、以下のような形式の設定を`src/config/firebase.ts`ファイルに記述する必要があります：
+
+```javascript
+// src/config/firebase.ts
+export const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID",
+    measurementId: "YOUR_MEASUREMENT_ID"
+};
+```
+
+これらの値はFirebaseコンソールの「プロジェクト設定」>「全般」タブ>「マイアプリ」セクションで確認できます。
+
+**セキュリティ上の注意**：
+- Firebaseのクライアント側APIキーは、ウェブアプリケーションのソースコードに含めることを前提に設計されています。
+- 実際のセキュリティはFirebase認証システムとFirebaseのセキュリティルール、およびバックエンドのトークン検証によって担保されています。
+- 適切な認証なしにはデータにアクセスできないよう設計されています。
 
 ## 使用方法
 

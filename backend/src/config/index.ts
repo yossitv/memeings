@@ -1,7 +1,8 @@
 import dotenv from 'dotenv';
+import path from 'path';
 
 // 環境変数の読み込み
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const config = {
   port: process.env.PORT || 5000,

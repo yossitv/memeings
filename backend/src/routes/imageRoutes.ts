@@ -1,5 +1,6 @@
 import express from 'express';
 import { generateImage, mergeImages, editImage } from '../controllers/imageController';
+import { firebaseAuthenticate } from '../middleware/firebaseOauth';
 
 const router = express.Router();
 
@@ -9,6 +10,8 @@ const router = express.Router();
  *   post:
  *     summary: テキストプロンプトから画像を生成する
  *     tags: [Images]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -37,10 +40,12 @@ const router = express.Router();
  *                   description: Base64エンコードされた画像データ
  *       400:
  *         description: 不正なリクエスト
+ *       401:
+ *         description: 認証エラー
  *       500:
  *         description: サーバーエラー
  */
-router.post('/generate-image', generateImage);
+router.post('/generate-image', firebaseAuthenticate, generateImage);
 
 /**
  * @swagger
@@ -48,6 +53,8 @@ router.post('/generate-image', generateImage);
  *   post:
  *     summary: 複数の画像をプロンプトに基づいて合成する
  *     tags: [Images]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -85,10 +92,12 @@ router.post('/generate-image', generateImage);
  *                   description: Base64エンコードされた合成画像データ
  *       400:
  *         description: 不正なリクエスト
+ *       401:
+ *         description: 認証エラー
  *       500:
  *         description: サーバーエラー
  */
-router.post('/merge-images', mergeImages);
+router.post('/merge-images', firebaseAuthenticate, mergeImages);
 
 /**
  * @swagger
@@ -96,6 +105,8 @@ router.post('/merge-images', mergeImages);
  *   post:
  *     summary: 既存の画像をプロンプトに基づいて編集する
  *     tags: [Images]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -131,9 +142,11 @@ router.post('/merge-images', mergeImages);
  *                   description: Base64エンコードされた編集済み画像データ
  *       400:
  *         description: 不正なリクエスト
+ *       401:
+ *         description: 認証エラー
  *       500:
  *         description: サーバーエラー
  */
-router.post('/edit-image', editImage);
+router.post('/edit-image', firebaseAuthenticate, editImage);
 
 export default router;

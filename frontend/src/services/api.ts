@@ -11,12 +11,35 @@ import type {
 
 const API_BASE_URL = 'http://localhost:5001/api';
 
+// ローカルストレージからIDトークンを取得
+const getAuthToken = (): string | null => {
+  try {
+    const authData = localStorage.getItem('firebase_auth');
+    if (authData) {
+      const parsedData = JSON.parse(authData);
+      return parsedData.idToken || null;
+    }
+  } catch (error) {
+    console.error('認証トークンの取得に失敗しました:', error);
+  }
+  return null;
+};
+
 const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
+});
+
+// リクエストインターセプターを追加して認証トークンを付与
+axiosInstance.interceptors.request.use((config) => {
+  const token = getAuthToken();
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 // レスポンスインターセプターを追加

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ChatPanel } from './components/ChatPanel';
 import { ImagePanel } from './components/ImagePanel';
 import { AdminPanel } from './components/AdminPanel';
+import { FirebaseLogin } from './components/FirebaseLogin';
 import { api } from './services/api';
 import type { Message, AppMode, ModePreset } from './types';
 import { MobileTabNavigation } from './components/MobileTabNavigation';
@@ -141,8 +142,9 @@ function App() {
 
   return (
       <div className="flex flex-col h-screen bg-gradient-secondary from-neutral-50 to-white dark:from-neutral-900 dark:to-neutral-950 overflow-hidden">
-        {/* テーマ切り替えボタン */}
-        <div className="absolute top-4 right-4 z-50">
+        {/* テーマ切り替えボタンとログインボタン */}
+        <div className="absolute top-4 right-4 z-50 flex items-center gap-3">
+          <FirebaseLogin />
           <button
             onClick={toggleTheme}
             className="theme-toggle hover-float"

@@ -2,8 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { 
   GenerateImageRequest, 
   MergeImagesRequest, 
-  EditImageRequest, 
-  ApiResponse 
+  EditImageRequest
 } from '../types';
 import { setupImageService } from '../services/setupServices';
 
@@ -20,8 +19,8 @@ export const generateImage = async (
     const { prompt, provider, options } = req.body;
     
     if (!prompt) {
-      res.status(400);
-      throw new Error('プロンプトが指定されていません');
+      res.status(400).json({ error: 'プロンプトが指定されていません' });
+      return;
     }
 
     // 画像生成サービスを利用
@@ -29,7 +28,8 @@ export const generateImage = async (
     
     res.status(200).json(response);
   } catch (error) {
-    next(error);
+    console.error('画像生成エラー:', error);
+    next(error); // Expressの標準的なエラーハンドリングに従う
   }
 };
 
@@ -43,8 +43,8 @@ export const mergeImages = async (
     const { prompt, images, model_name, options } = req.body;
     
     if (!prompt) {
-      res.status(400);
-      throw new Error('プロンプトが指定されていません');
+      res.status(400).json({ error: 'プロンプトが指定されていません' });
+      return;
     }
 
     // 画像合成サービスを利用
@@ -62,7 +62,8 @@ export const mergeImages = async (
 
     res.status(200).json(response);
   } catch (error) {
-    next(error);
+    console.error('画像合成エラー:', error);
+    next(error); // Expressの標準的なエラーハンドリングに従う
   }
 };
 
@@ -76,13 +77,13 @@ export const editImage = async (
     const { prompt, image, reference_image, provider, options } = req.body;
     
     if (!prompt) {
-      res.status(400);
-      throw new Error('プロンプトが指定されていません');
+      res.status(400).json({ error: 'プロンプトが指定されていません' });
+      return;
     }
 
     if (!image) {
-      res.status(400);
-      throw new Error('編集する画像が指定されていません');
+      res.status(400).json({ error: '編集する画像が指定されていません' });
+      return;
     }
 
     // 画像編集サービスを利用
@@ -96,6 +97,7 @@ export const editImage = async (
 
     res.status(200).json(response);
   } catch (error) {
-    next(error);
+    console.error('画像編集エラー:', error);
+    next(error); // Expressの標準的なエラーハンドリングに従う
   }
 };

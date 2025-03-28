@@ -14,6 +14,16 @@ const swaggerOptions: swaggerJSDoc.Options = {
         description: '開発用サーバー',
       },
     ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+          description: 'Firebase Authentication IDトークンをヘッダーに指定してください'
+        }
+      }
+    }
   },
   apis: ['./src/routes/*.ts'], // APIルートファイルのパス
 };
