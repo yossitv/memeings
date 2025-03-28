@@ -83,3 +83,10 @@
 - 画像データはBase64エンコードして送信してください（Data URIプレフィックスは含めないでください）
 - リクエストヘッダーには `Content-Type: application/json` と `Accept: application/json` を含めてください
 - エラーが発生した場合は、適切なHTTPステータスコードとエラーメッセージを含むJSONレスポンスが返されます
+
+
+起動方法
+```bash
+cd /ririsa-front-new/frontend && npm run dev
+cd /ririsa-front-new/backend/ && npm run dev
+```

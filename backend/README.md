@@ -33,6 +33,11 @@ CORS_ORIGIN=http://localhost:5173
 npm run dev
 ```
 
+```
+npx ts-node src/server.ts
+
+```
+
 ## ビルドと実行
 
 ```bash

@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+// JSX変換のためにReactをインポート
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { v4 as uuidv4 } from 'uuid';
 import { ChatPanel } from './components/ChatPanel';
