@@ -9,7 +9,7 @@ import type {
   ModePreset
 } from '../types';
 
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = 'https://memeings.com/api';
 
 // ローカルストレージからIDトークンを取得
 const getAuthToken = (): string | null => {
